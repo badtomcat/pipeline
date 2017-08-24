@@ -25,5 +25,24 @@ $middlewares = [
     },
 ];
 
-$a = (new pipe())->send(1)->through($middlewares)->then(dispatchToRouter());
+(new pipe())->send(1)->through($middlewares)->then(dispatchToRouter());
+
+
+$middlewares = [
+    function($a,$next){
+        $next($a + 5);
+        var_dump($a);
+    },
+    function($b,$next){
+        $next($b * 2);
+        var_dump($b);
+    },
+    function($c,$next){
+        $next($c - 1);
+        var_dump($c);
+    },
+];
+
+(new pipe())->send(1)->through($middlewares)->then(dispatchToRouter());
+
 </pre>
