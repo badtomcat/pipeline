@@ -12,19 +12,32 @@ class Pipeline {
     protected $middlewares = [];
 
     protected $request;
+
+    /***
+     * @param $request
+     * @return $this
+     */
     public function send($request)
     {
         $this->request = $request;
         return $this;
     }
 
-    public function through($middlewares)
+    /**
+     * @param array $middlewares
+     * @return $this
+     */
+    public function through(array $middlewares)
     {
         $this->middlewares = $middlewares;
         return $this;
     }
 
-    public function then(Closure $destination)
+    /**
+     * @param \Closure $destination
+     * @return mixed
+     */
+    public function then(\Closure $destination)
     {
         $pipes = array_reverse($this->middlewares);
         $run = array_reduce($pipes, function ($carry, $pipe) {
