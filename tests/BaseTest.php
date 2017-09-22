@@ -22,9 +22,11 @@ class BaseTest extends PHPUnit_Framework_TestCase {
             },
         ];
 
-        (new \Tian\Pipeline())->send(1)->through($middlewares)->then(function ($request) {
+        $result = (new \Tian\Pipeline())->send(1)->through($middlewares)->then(function ($request) {
                 echo '>>>'.$request . PHP_EOL;
+                return "taw";
         });
+        $this->assertEquals("taw",$result);
 	}
 
 }
