@@ -1,17 +1,15 @@
 {
-  "name": "aweitian/pipeline",
+  "name": "badtomcat/pipeline",
   "description": "pipeline",
   "type": "project",
   "keywords": [
-    "aweitian",
-    "tiananwei",
     "pipeline"
   ],
-  "homepage": "https://github.com/aweitian/pipeline",
+  "homepage": "https://github.com/badtomcat/pipeline",
   "license": "MIT",
   "authors": [
     {
-      "name": "awei.tian@qq.com",
+      "name": "badtomcat",
       "email": "531164479@qq.com"
     }
   ],
@@ -25,7 +23,7 @@
   "autoload": {
     "files": [],
     "psr-4": {
-      "Tian\\": "src/"
+      "Badtomcat\\": "src/"
     }
   }
 }

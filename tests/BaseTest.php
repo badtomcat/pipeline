@@ -22,7 +22,7 @@ class BaseTest extends PHPUnit_Framework_TestCase {
             },
         ];
 
-        $result = (new \Tian\Pipeline())->send(1)->through($middlewares)->then(function ($request) {
+        $result = (new \Badtomcat\Pipeline())->send(1)->through($middlewares)->then(function ($request) {
                 echo '>>>'.$request . PHP_EOL;
                 return "taw";
         });

@@ -3,7 +3,7 @@
 /**
  * @date 2017/6/8 17:50:44
  */
-namespace Tian;
+namespace Badtomcat;
 
 class Pipeline {
     /**
