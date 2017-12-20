@@ -42,11 +42,39 @@ class Pipeline {
         $pipes = array_reverse($this->middlewares);
         $run = array_reduce($pipes, function ($carry, $pipe) {
             return function ($passable) use ($carry, $pipe) {
-                return call_user_func_array($pipe, [$passable, $carry]);
+                if ($pipe instanceof \Closure)
+                {
+                    return call_user_func_array($pipe, [$passable, $carry]);
+                }
+                else
+                {
+                    return $this->handle($pipe,[$passable, $carry]);
+                }
+
             };
         }, function ($passable) use ($destination){
             return call_user_func($destination, $passable);
         });
         return call_user_func($run, $this->request);
     }
+
+    /**
+     * @param $class
+     * @param $arg
+     * @return mixed|null
+     */
+    protected function handle($class,$arg)
+    {
+        echo $class;
+        $rc = new \ReflectionClass($class);
+        if ($rc->hasMethod("handle"))
+        {
+            $ins = $rc->newInstance();
+            $met = $rc->getMethod("handle");
+            $ret = $met->invoke($ins,$arg[0],$arg[1]);
+            return $ret;
+        }
+        return null;
+    }
+
 }
