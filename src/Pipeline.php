@@ -65,7 +65,6 @@ class Pipeline {
      */
     protected function handle($class,$arg)
     {
-        echo $class;
         $rc = new \ReflectionClass($class);
         if ($rc->hasMethod("handle"))
         {
