@@ -1,4 +1,7 @@
 # pipe
+
+
+
 <pre>
 function dispatchToRouter()
 {
@@ -24,6 +27,8 @@ $middlewares = [
         return $r;
     },
 ];
+
+> 函数的返回值为第一个PIPE的返回值
 
 (new pipe())->send(1)->through($middlewares)->then(dispatchToRouter());
 
